@@ -8,9 +8,6 @@ class ArticlesService:
             data = json.load(json_file)
             self.articles = data['results']
             return self.find_featured_article(slug)
-            
-            # for result in data['results']:
-            #     print("oh hi there, friend")
                 
     def find_featured_article(self, slug):
         featuredIndex = None
