@@ -8,7 +8,7 @@
         </div>
         <div class="card-elements">
             <div class="card-header">
-                <a href="article.html"><h3>{{ view.featured.headline }}</h3></a>
+                <a href="{{ view.featured.path }}"><h3>{{ view.featured.headline }}</h3></a>
                 <p class="author">{{ view.featured.authors.0.byline }} | {{ view.featured.created }} FIXME</p>
             </div>
             <div class="card-copy">
@@ -18,60 +18,8 @@
     </section>
 </div>
 <div class="cards row">
-    <div class="card">
-        <div class="card-image">
-            <a href="article.html">
-                <img src="images/card-1.jpg" alt="">
-            </a>
-        </div>
-        <div class="card-elements">
-            <div class="card-header">
-                <a href="article.html">
-                    <h4>Tesla Unveils 2 Mind-Blowing New Vehicles -- What You Need to Know</h4>
-                </a>
-                <p class="author">Naeem Khan | November 18, 2017 </p>
-            </div>
-            <div class="card-copy">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-image">
-            <a href="article.html">
-                <img src="images/card-2.jpg" alt="">
-            </a>
-        </div>
-        <div class="card-elements">
-            <div class="card-header">
-                <a href="article.html">
-                    <h4>5 Key Takeaways From Coca-Cola's Earnings Call</h4>
-                </a>
-                <p class="author">Naeem Khan | November 18, 2017 </p>
-            </div>
-            <div class="card-copy">
-                <p>It is a long established fact that a reader will be distracted by the readable.</p>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-image">
-            <a href="article.html">
-                <img src="images/card-3.jpg" alt="">
-            </a>
-        </div>
-        <div class="card-elements">
-            <div class="card-header">
-                <a href="article.html">
-                    <h4>5 Things National-Oilwell Varco, Inc.'s CEO Wants You to Know About Its Future</h4>
-                </a>
-                <p class="author">Naeem Khan | November 18, 2017 </p>
-            </div>
-            <div class="card-copy">
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration .</p>
-            </div>
-        </div>
-    </div>
+  {% for article in view.others %}
+    {% include 'sub_article.html' with article=article %}
+  {% endfor %}
 </div> 
 {% endblock content %}
