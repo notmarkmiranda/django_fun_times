@@ -1,0 +1,18 @@
+<div class="{{ feature|yesno:"jumbo-card card,card" }}">
+  <div class="card-image">
+    <a href="article.html">
+      <img src="{{ article.images.0.url }}" alt="">
+    </a>
+  </div>
+  <div class="card-elements">
+    <div class="card-header">
+      <a href="{{ article.path }}">
+        <h4>{{ article.headline }}</h4>
+      </a>
+      <p class="author">{{ article.byline }} | {{ article.publish_at }} </p>
+    </div>
+    <div class="card-copy">
+      <p>{{ article.promo }}</p>
+    </div>
+  </div>
+</div>

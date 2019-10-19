@@ -15,15 +15,13 @@
         <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div class="container top-bar">
+        <div class="container {{ detail|yesno:"top-bar article-top-bar,top-bar" }}">
             <a href="{% url 'home' %}" class="btn btn-primary">HOME</a>
         </div>
-        <div class="container content-inner">
-          {% block content %}
-          {% endblock content %}
-        </div>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+        {% block content %}
+        {% endblock content %}
+        <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
     </body>
 </html>

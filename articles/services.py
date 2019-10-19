@@ -1,5 +1,6 @@
 import json
 import random
+from django.utils.dateparse import parse_datetime
 
 class ArticlesService:
     articles = []
@@ -8,17 +9,21 @@ class ArticlesService:
         with open('fixtures/content_api.json') as json_file:
             data = json.load(json_file)
             self.articles = data['results']
+            for article in self.articles:
+                article['path'] = article['path'][:-5] 
+                article['publish_at_with_time'] = parse_datetime(article['publish_at']).strftime('%B %-e, %Y at %I:%M%p')
+                article['publish_at'] = parse_datetime(article['publish_at']).strftime('%B %-e, %Y')
+                article['body'] = article['body'].replace('<p>{%sfr%}</p>', '')
             
     def find_featured_article(self, slug):
         featuredIndex = None
         for index in range(len(self.articles)):
-            self.articles[index]['path'] = self.articles[index]['path'][:-5]
             if self.articles[index]['uuid'] == 'a7acd8c8-c5ce-11e7-9fa6-0050569d4be0':
                 featuredIndex = index
         featuredArticle = self.articles.pop(featuredIndex)
         return { 'featured': featuredArticle, 'others': random.sample(self.articles, 3) }
     
-    def find_article(self, path):
+    def find_article_by_path(self, path):
         article = None
         for index in range(len(self.articles)):
             if path in self.articles[index]["path"]:

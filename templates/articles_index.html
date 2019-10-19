@@ -1,25 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="main-col">
-    <section class="jumbo-card card">
-        <div class="card-image">
-            <a href="article.html"><img src="{{ view.featured.images.0.url }}" alt="" class="img-responsive"></a>
-        </div>
-        <div class="card-elements">
-            <div class="card-header">
-                <a href="{{ view.featured.path }}"><h3>{{ view.featured.headline }}</h3></a>
-                <p class="author">{{ view.featured.authors.0.byline }} | {{ view.featured.created }} FIXME</p>
-            </div>
-            <div class="card-copy">
-                <p>{{ view.featured.promo }}</p>
-            </div>
-        </div>
-    </section>
+<div class="container content-inner">
+  <div class="main-col">
+    {% include 'article_card.html' with article=featured feature=True %}
+  </div>
+  <div class="cards row">
+    {% for article in articles %}
+      {% include 'article_card.html' with article=article %}
+    {% endfor %}
+  </div> 
 </div>
-<div class="cards row">
-  {% for article in view.others %}
-    {% include 'sub_article.html' with article=article %}
-  {% endfor %}
-</div> 
 {% endblock content %}
