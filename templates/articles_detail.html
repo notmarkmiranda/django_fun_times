@@ -47,25 +47,38 @@
       </section>
     </main>
     <aside class="col-sm-5 col-md-4 p-l">
-      
       {% include 'quote.html' %}
-      
-      
-
       <section class="read-more-section">
-      <div class="block-title">
-        <hr><h2>Read More</h2>
-      </div>
-      <ul class="two-line-list">
-        <li><a href="#">It is a long established fact that a reader</a></li>
-        <li><a href="#">Many desktop publishing packages and web page editors now use</a></li>
-        <li><a href="#">Contrary to popular belief, Lorem Ipsum is not simply random text</a></li>
-        <li><a href="#">There are many variations of passa</a></li>
-        <li><a href="#" >If you are going to use a passage of Lorem Ipsum</a></li>
-      </ul>
-    </section>
-  </aside>
+        <div class="block-title">
+          <hr><h2>Read More</h2>
+        </div>
+        <ul class="two-line-list">
+          <li><a href="#">It is a long established fact that a reader</a></li>
+          <li><a href="#">Many desktop publishing packages and web page editors now use</a></li>
+          <li><a href="#">Contrary to popular belief, Lorem Ipsum is not simply random text</a></li>
+          <li><a href="#">There are many variations of passa</a></li>
+          <li><a href="#" >If you are going to use a passage of Lorem Ipsum</a></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+  <section class="discussion">
+    <hr><h2>Discussion</h2>
+    {% for comment in comments %}
+      <small>{{ comment.created_at }}</small>
+      <p id="hey">{{ comment.body }}</p>
+    {% endfor %}  
+    <h2>Add a comment</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit Comment" class="btn btn-primary">
+      
+    </form>
+  </section>
+  
 </div>
-</div>
+
+
 {% endblock content %}
 
