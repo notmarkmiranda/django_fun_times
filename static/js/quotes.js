@@ -1,8 +1,3 @@
-$(document).ready() {
-  console.log('testing');
-}
-
-
 document.querySelector('#stock-refresher').onclick = function() {
   refreshQuotes()
 }
