@@ -1,12 +1,16 @@
 from django.views.generic import TemplateView
+from django.shortcuts import render
+import json
 
-from .services import ArticlesService
+from .services import ArticlesService, QuotesService
 
 class ArticlesIndexView(TemplateView):
-    template_name = 'articles_index.html'
+    def get(self, request):
+        all_articles = ArticlesService().find_featured_article('10-promise')
+        return render(request, 'articles_index.html', { 'featured': all_articles['featured'], 'articles': all_articles['others'], 'detail': False })
     
-    def featured(self):
-        return ArticlesService().process('10-promise')['featured']
-        
-    def others(self):
-        return ArticlesService().process('10-promise')['others']        
+class ArticlesDetailView(TemplateView):
+    def get(self, request, year, month, day, slug):
+        article = ArticlesService().find_article_by_path('%s/%s/%s/%s' % (year, month, day, slug))
+        quotes = QuotesService().all_quotes()
+        return render(request, 'articles_detail.html', { 'article': article, 'detail': True, 'quotes': quotes[:3] })
