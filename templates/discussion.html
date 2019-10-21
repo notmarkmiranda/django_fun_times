@@ -1,0 +1,17 @@
+<section class="discussion">
+  <hr><h2>Discussion</h2>
+  {% if comments.all %}
+    {% for comment in comments %}
+      <small>{{ comment.created_at }}</small>
+      <p id="hey">{{ comment.body }}</p>
+    {% endfor %}  
+  {% else %}
+    <p>There are no comments, add one below!</p>
+  {% endif %}
+  <h2>Add a comment</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit Comment" class="btn btn-primary">
+  </form>
+</section>

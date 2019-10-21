@@ -40,14 +40,24 @@ function createSingleQuote(template, quotes) {
     template.querySelector('span.market').innerText = quote['ExchangeName']
     template.querySelector('span.symbol').innerText = quote['Symbol']
     template.querySelector('h4.current-price').innerText = `$${quote['CurrentPrice']['Amount'].toFixed(2)}`
-    template.querySelector('h4.price-change-amount').innerText = `$${quote['Change']['Amount'].toFixed(2)}`
+    template.querySelector('h4.price-change-amount').innerText = `$${Math.abs(quote['Change']['Amount'].toFixed(2))}`
     template.querySelector('h4.price-change-amount').classList.toggle("price-pos", isPositive)
     template.querySelector('h4.price-change-amount').classList.toggle("price-neg", isNegative)
-    template.querySelector('h4.price-change-percent').innerText = `${Math.floor(quote['PercentChange']['Value'] * 10000) / 1000}%`
+    template.querySelector('h4.price-change-percent').innerText = formatPercentages(quote['PercentChange']['Value'])
+    template.querySelector('h4.price-change-percent').classList.toggle("price-pos", isPositive)
+    template.querySelector('h4.price-change-percent').classList.toggle("price-neg", isNegative)
     var clone = document.importNode(template, true);  
     document.querySelector("#quotes").prepend(clone);  
-    // document.querySelector('#quotes').append(template)
   })
+}
+
+function formatPercentages(number) {
+  let percent = Math.abs(Math.floor(number * 10000) / 1000)
+  if (number < 0) {
+    return `(${percent}%)`
+  } else {
+    return `${percent}%`
+  }
 }
 
 function shuffle(array) {
