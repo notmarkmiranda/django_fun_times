@@ -1,8 +1,6 @@
 <div class="{{ feature|yesno:"jumbo-card card,card" }}">
   <div class="card-image">
-    <a href="article.html">
-      <img src="{{ article.images.0.url }}" alt="">
-    </a>
+    <img src="{{ article.images.0.url }}" alt="{{ article.images.0.name }}">
   </div>
   <div class="card-elements">
     <div class="card-header">

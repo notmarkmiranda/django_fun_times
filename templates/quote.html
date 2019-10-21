@@ -5,33 +5,31 @@
   <div class="block-title">
     <hr><h2>Stocks</h2>
   </div>
-  <div>
-    <div id="quotes">
-      <div class="ticker-row" id="quote-template">
-        <div>
-          <span class="image-wrap">
-            <a href="#">
-              <img src="" class="img-responsive company-image" alt="">
+  <div id="quotes">
+    <div class="ticker-row" id="quote-template">
+      <div>
+        <span class="image-wrap">
+          <a href="#">
+            <img src="" class="img-responsive company-image" alt="">
+          </a>
+        </span>
+        <h3 class="company-name"></h3>
+        <h4>
+          <span class="ticker">
+            <a title="Apple Stock Quote" href="#">
+              <span class="market"></span>:<span class="symbol"></span>
             </a>
           </span>
-          <h3 class="company-name"></h3>
-          <h4>
-            <span class="ticker">
-              <a title="Apple Stock Quote" href="#">
-                <span class="market"></span>:<span class="symbol"></span>
-              </a>
-            </span>
+        </h4>
+        <aside class="price-quote-container">
+          <h4 class="current-price">
           </h4>
-          <aside class="price-quote-container">
-            <h4 class="current-price">
-            </h4>
-            <h4 class="price-change-amount">
-            </h4>
-            <h4 class="price-change-percent">
-              {{ quote.percentChange }}
-            </h4>
-          </aside>
-        </div>
+          <h4 class="price-change-amount">
+          </h4>
+          <h4 class="price-change-percent">
+            {{ quote.percentChange }}
+          </h4>
+        </aside>
       </div>
     </div>
   </div>

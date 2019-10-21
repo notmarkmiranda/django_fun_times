@@ -9,7 +9,7 @@
         <header>
           <div id="adv_text" class="adv-heading"></div>
           <h1>{{ article.headline }}</h1>
-          <!--<h2>You won't believe the specs on these new all-electric vehicles. </h2>-->
+          <h2>{{ article.promo }}</h2>
         </header>
       </div>
     </div>
@@ -62,21 +62,7 @@
       </section>
     </aside>
   </div>
-  <section class="discussion">
-    <hr><h2>Discussion</h2>
-    {% for comment in comments %}
-      <small>{{ comment.created_at }}</small>
-      <p id="hey">{{ comment.body }}</p>
-    {% endfor %}  
-    <h2>Add a comment</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Submit Comment" class="btn btn-primary">
-      
-    </form>
-  </section>
-  
+  {% include 'discussion.html' %}
 </div>
 
 

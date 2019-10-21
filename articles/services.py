@@ -18,8 +18,12 @@ class ArticlesService:
     def find_featured_article(self, slug):
         featuredIndex = None
         for index in range(len(self.articles)):
-            if self.articles[index]['uuid'] == 'a7acd8c8-c5ce-11e7-9fa6-0050569d4be0':
-                featuredIndex = index
+            for tag in self.articles[index]['tags']:
+                if tag['slug'] == slug:
+                    featuredIndex = index
+                    break
+            if featuredIndex is not None:
+                break
         featuredArticle = self.articles.pop(featuredIndex)
         return { 'featured': featuredArticle, 'others': random.sample(self.articles, 3) }
     

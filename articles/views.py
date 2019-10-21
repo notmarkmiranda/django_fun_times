@@ -17,7 +17,7 @@ class ArticlesIndexView(TemplateView):
 class ArticlesDetailView(CreateView):
     def get(self, request, year, month, day, slug):
         article = ArticlesService().find_article_by_path('%s/%s/%s/%s' % (year, month, day, slug))
-        comments = Comment.objects.filter
+        comments = Comment.objects.filter(article_uuid=article['uuid']).order_by('created_at')
         form = CommentForm()
         return render(request, 'articles_detail.html', { 'article': article, 'comments': comments, 'form': form })
     
@@ -30,9 +30,3 @@ class ArticlesDetailView(CreateView):
             comment.save()
             return redirect(reverse('article', kwargs={ 'year': year, 'month': month, 'day': day, 'slug': slug }))
         return render(request, 'articles_detail.html', { 'article': article })
-        
-    def get_queryset(self):
-        return Comment.objects.filter(article_uuid='a7acd8c8-c5ce-11e7-9fa6-0050569d4be0').order_by('created_at')
-    
-    def get_absolute_url(self):
-        return reverse('home')
